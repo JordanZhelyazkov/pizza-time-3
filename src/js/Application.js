@@ -10,8 +10,7 @@ export default class Application extends EventEmitter {
   }
 
   constructor() {
-    super();
-
+    super()
     const pizzas = [
       {
         type: Card.types.HAWAIIAN,
@@ -29,11 +28,21 @@ export default class Application extends EventEmitter {
 
     pizzas.forEach((pizza) => {
       const card = new Card({ ...pizza });
-      card.render();
+      card.render(pizza.type, pizza.price);
+      card.on('add_to_cart',(props)=>
+        {
+          const notif = new Notification()
+          document.querySelector('.notifications').appendChild(notif.render(props));
+        }
+      )
 
       document.querySelector(".main").appendChild(card.container);
     });
-
+     
+    
+   
+    
     this.emit(Application.events.READY);
   }
+  
 }

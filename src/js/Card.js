@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import EventEmitter from "eventemitter3";
 
+
 export default class Card extends EventEmitter {
   static get events() {
     return {
@@ -41,7 +42,7 @@ export default class Card extends EventEmitter {
       this.emit(Card.events.ADD_TO_CART, {
         type: this._type,
         price: this._price,
-      });
+      });      
     });
   }
 }
